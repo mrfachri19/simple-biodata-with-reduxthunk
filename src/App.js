@@ -1,25 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import JumbotronComponent from "./components/JumbotronComponent";
+import NavbarComponent from "./components/NavbarComponent";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import HomeContainer from "./containers/HomeUserContainer";
+import CreateUsersContainer from "./containers/CreateUserContainer";
+import DetailUsersContainer from "./containers/DetailUserContainer";
+import EditUsersContainer from "./containers/EditUserContainer";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export default class App extends Component {
+  render() {
+    return (
+      <div className="container">
+        <NavbarComponent />
+        <JumbotronComponent />
+        <Router>
+          <Switch>
+            <Route exact path="/" component={HomeContainer} />
+            <Route exact path="/create" component={CreateUsersContainer} />
+            <Route exact path="/detail/:id" component={DetailUsersContainer} />
+            <Route exact path="/edit/:id" component={EditUsersContainer} />
+          </Switch>
+        </Router>
+      </div>
+    );
+  }
 }
-
-export default App;
